@@ -1,0 +1,12 @@
+[project]
+
+name="src"
+version="0.0.1"
+authors=[{'name'="Noman", "email"= "nmazhar911@gmail.com"}]
+description="A full ML fledged project, covering all aspects of MLOPS"
+
+[tool.setuptools]
+packages = {find={}}
+
+[tool.setuptools.dynamic]
+dependencies= { file= ["requirements.txt"]}
