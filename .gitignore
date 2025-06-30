@@ -12,7 +12,6 @@ base
 # data
 *.csv
 *.ipynb_checkpoints
-*.ipynb
 
 # Distribution / packaging
 .Python
