@@ -11,6 +11,9 @@ PIPELINE_NAME: str = ""
 ARTIFACT_DIR: str = "artifact"
 
 
+FILE_NAME: str = "data.csv"
+TRAIN_FILE_NAME: str = "train.csv"
+TEST_FILE_NAME: str = "test.csv"
 """
 Data Ingestion related constant start with DATA_INGESTION VAR NAME
 """
