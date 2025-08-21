@@ -10,7 +10,7 @@ from src.exception import MyException
 def read_yaml(file_path: str) -> dict:
     try:
         with open(file_path, 'rb') as f:
-            return f.safe_load(file_path)
+            return yaml.safe_load(f)
     except Exception as e:
         raise MyException(e, sys) from e
     

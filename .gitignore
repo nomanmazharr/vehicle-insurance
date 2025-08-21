@@ -13,6 +13,7 @@ base
 # data
 *.csv
 *.ipynb_checkpoints
+artifact/
 
 # Distribution / packaging
 .Python
