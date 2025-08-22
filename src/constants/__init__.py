@@ -11,6 +11,8 @@ PIPELINE_NAME: str = ""
 ARTIFACT_DIR: str = "artifact"
 
 PREPROCESSING_OBJECT_FILE_NAME = 'preprocessing.pkl'
+TARGET_COLUMN: str = "Response"
+CURRENT_YEAR = date.today().year
 
 FILE_NAME: str = "data.csv"
 TRAIN_FILE_NAME: str = "train.csv"
