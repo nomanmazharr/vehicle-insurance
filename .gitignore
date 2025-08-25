@@ -14,6 +14,7 @@ base
 *.csv
 *.ipynb_checkpoints
 artifact/
+*.csv
 
 # Distribution / packaging
 .Python
