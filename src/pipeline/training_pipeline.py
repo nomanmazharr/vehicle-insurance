@@ -6,10 +6,11 @@ from src.components.data_validation import DataValidation
 from src.components.data_transformation import DataTransformation
 from src.components.model_trainer import ModelTrainer
 from src.components.model_evaluation import ModelEvaluation
+from src.components.model_pusher import ModelPusher
 from src.entity.config_entity import (DataIngestionConfig, DataValidationConfig, DataTransformationConfig,
 ModelTrainerConfig,
-ModelEvaluationConfig)
-from src.entity.artifact_entity import (DataIngestionArtifact, DataValidationArtifact, DataTransformationArtifact, ModelTrainerArtifact,ModelEvaluationArtifact)
+ModelEvaluationConfig, ModelPusherConfig)
+from src.entity.artifact_entity import (DataIngestionArtifact, DataValidationArtifact, DataTransformationArtifact, ModelTrainerArtifact,ModelEvaluationArtifact, ModelPusherArtifact)
 
 
 class Trainpipeline():
@@ -19,6 +20,9 @@ class Trainpipeline():
         self.data_transformation_config = DataTransformationConfig()
         self.model_trainer_config = ModelTrainerConfig()
         self.model_evaluation_config = ModelEvaluationConfig()
+        self.model_pusher_config = ModelPusherConfig()
+
+
 
     def start_data_ingestion(self) -> DataIngestionArtifact:
         """
@@ -85,6 +89,20 @@ class Trainpipeline():
         except Exception as e:
             raise MyException(e, sys) from e
    
+    
+    def start_model_pusher(self, model_evaluation_artifact: ModelEvaluationArtifact) -> ModelPusherArtifact:
+
+        try:
+            model_pusher = ModelPusher(model_evaluation_artifact=model_evaluation_artifact, model_pusher_config=self.model_pusher_config)
+
+            model_pusher_artifact = model_pusher.initiate_model_pusher()
+
+            return model_pusher_artifact
+        
+        except Exception as e:
+            raise MyException(e, sys) from e
+        
+
 
     def run_pipeline(self, ) -> None:
             """
@@ -103,6 +121,8 @@ class Trainpipeline():
                 if not model_evaluation_artifact.is_model_accepted:
                     logging.info(f"Model not accepted")
                     return None
+                
+                model_pusher_artifact = self.start_model_pusher(model_evaluation_artifact=model_evaluation_artifact)
 
             except Exception as e:
                 raise MyException(e, sys)

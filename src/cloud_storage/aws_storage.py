@@ -12,7 +12,7 @@ from mypy_boto3_s3.service_resource import Bucket
 
 class SimpleStorageService:
     def __init__(self):
-        s3_client = S3Client
+        s3_client = S3Client()
         self.s3_resource = s3_client.s3resource
         self.s3_client = s3_client.s3client
 

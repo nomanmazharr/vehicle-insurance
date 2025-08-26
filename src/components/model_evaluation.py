@@ -76,12 +76,12 @@ class ModelEvaluation:
 
             logging.info("Test data loaded and now transforming it for prediction...")
 
-            x = self._map_gender_column(x)
-            x = self._drop_id_column(x)
-            x = self._create_dummy_columns(x)
-            x = self._rename_columns(x)
+            x = self.map_gender_column(x)
+            x = self.drop_id_column(x)
+            x = self.create_dummy_columns(x)
+            x = self.rename_columns(x)
 
-            trained_model = load_object(file_path=self.model_trainer_artifact.trained_model_file_path)
+            trained_model = load_object(filepath=self.model_trainer_artifact.trained_model_file_path)
             logging.info("Trained model loaded/exists.")
             trained_model_f1_score = self.model_trainer_artifact.metric_artifact.f1_score
             logging.info(f"F1_Score for this model: {trained_model_f1_score}")
@@ -125,5 +125,4 @@ class ModelEvaluation:
             return model_evaluation_artifact
         except Exception as e:
             raise MyException(e, sys) from e
-        
         
