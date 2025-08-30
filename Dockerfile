@@ -1,5 +1,5 @@
 # using system python 3.12
-FROM python:3.12-slim-buster
+FROM python:3.12-slim
 
 # Setting upi working directory
 WORKDIR /app
