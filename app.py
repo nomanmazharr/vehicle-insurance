@@ -62,7 +62,7 @@ async def index(request: Request):
 
     return templates.TemplateResponse("index.html", {"request": request, "context": "Rendering"})
 
-@app.post("/")
+@app.post("/predict", tags=["main"])
 async def predictRouteClient(request: Request):
 
     try:
